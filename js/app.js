@@ -12,6 +12,10 @@ $(document).ready(function(){
   		$(".overlay").fadeOut(1000);
   	});
   	
+  	$(".clearfix li > .new").mousedown(function(){ 
+  	    
+  	})
+  	
   	$("#target").submit(function(event) {
   	   count += 1; 
   	   $("#count").text(count);
