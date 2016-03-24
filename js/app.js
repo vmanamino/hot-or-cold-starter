@@ -14,7 +14,9 @@ $(document).ready(function(){
   	
   	$(".new").mousedown(function(){
   	    $("#feedback").text("Make your Guess!");
-  	    setCount(0); 
+  	    random = randomValue();
+  	    count = 0;
+  	    setCount(count); 
   	    $("#guessList").empty();
   	});
   	
@@ -56,7 +58,8 @@ function randomValue() {
 }
 
 function howClose(input, random){
-    var difference = differenz(input, random);
+    // var difference = differenz(input, random);
+    var difference = Math.abs(input - random);
     if (difference > 50) {
         $("#feedback").text("Ice Cold!");
     }
