@@ -14,14 +14,11 @@ $(document).ready(function(){
   	
   	$(".new").mousedown(function(){
   	    $("#feedback").text("Make your Guess!");
-  	    count = 0;
-  	    $("#count").text(count); 
+  	    setCount(0); 
   	    $("#guessList").empty();
   	});
   	
   	$("#target").submit(function(event) {
-  	   count += 1; 
-  	   $("#count").text(count);
   	   event.preventDefault();
   	   var userInput = $("#userGuess").val();
   	   $("#userGuess").val("");
@@ -30,6 +27,8 @@ $(document).ready(function(){
   	   userInput = parseInt(userInput);
   	   if (userInput) {
   	       if (userInput < 101 && userInput > 0) {
+  	           count += 1; 
+  	           setCount(count);
       	       $("#guessList").append("<li>"+userInput+"</li>");
       	       if (userInput == random){
       	          $('#feedback').text("gotchya");
@@ -40,6 +39,7 @@ $(document).ready(function(){
   	       }
   	       else {
   	           alert("Your number " + userInput + " does not range from 1 to 100");
+  	           setCount(0);
   	       }
   	       
   	   }
@@ -85,4 +85,6 @@ function differenz(input, random) {
     return difference;
 }
 
-
+function setCount(count) {
+    $("#count").text(count);
+}
