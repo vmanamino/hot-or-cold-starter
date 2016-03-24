@@ -12,9 +12,11 @@ $(document).ready(function(){
   		$(".overlay").fadeOut(1000);
   	});
   	
-  	$(".clearfix li > .new").mousedown(function(){ 
-  	    
-  	})
+  	$(".new").mousedown(function(){
+  	    count = 0;
+  	    $("#count").text(count); 
+  	    $("#guessList").empty();
+  	});
   	
   	$("#target").submit(function(event) {
   	   count += 1; 
