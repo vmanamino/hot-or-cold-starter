@@ -13,6 +13,7 @@ $(document).ready(function(){
   	});
   	
   	$(".new").mousedown(function(){
+  	    $("#feedback").text("Make your Guess!");
   	    count = 0;
   	    $("#count").text(count); 
   	    $("#guessList").empty();
