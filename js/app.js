@@ -39,7 +39,7 @@ $(document).ready(function(){
   	       }
   	       else {
   	           alert("Your number " + userInput + " does not range from 1 to 100");
-  	           setCount(0);
+  	           setCount(count);
   	       }
   	       
   	   }
