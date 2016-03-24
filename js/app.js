@@ -24,20 +24,27 @@ $(document).ready(function(){
   	   $("#count").text(count);
   	   event.preventDefault();
   	   var userInput = $("#userGuess").val();
-  	   $("#guessList").append("<li>"+userInput+"</li>");
   	   $("#userGuess").val("");
   	 //  var randomValue = 15;
   	   userInput = +userInput;
-  	   if (parseInt(userInput)) {
-  	       if (userInput == random){
-  	          $('#feedback').text("gotchya");
+  	   userInput = parseInt(userInput);
+  	   if (userInput) {
+  	       if (userInput < 101 && userInput > 0) {
+      	       $("#guessList").append("<li>"+userInput+"</li>");
+      	       if (userInput == random){
+      	          $('#feedback').text("gotchya");
+      	       }
+      	       else if (userInput != random){
+      	           howClose(userInput, random);
+      	       }
   	       }
-  	       else if (userInput != random){
-  	           howClose(userInput, random);
+  	       else {
+  	           alert("Your number " + userInput + " does not range from 1 to 100");
   	       }
+  	       
   	   }
   	   else {
-  	       alert("Your input, " + userInput + ", is not valid");
+  	       alert("Your input, " + userInput + ", is not valid number");
   	   }
   	});
 });
