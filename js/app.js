@@ -1,4 +1,4 @@
-
+ var previousDifference = 0;
 $(document).ready(function(){
     var random = randomValue();
     var count = 0;
@@ -15,6 +15,7 @@ $(document).ready(function(){
   	$(".new").mousedown(function(){
   	    $("#feedback").text("Make your Guess!");
   	    random = randomValue();
+  	    previousDifference = 0;
   	    count = 0;
   	    setCount(count); 
   	    $("#guessList").empty();
@@ -43,7 +44,6 @@ $(document).ready(function(){
   	           alert("Your number " + userInput + " does not range from 1 to 100");
   	           setCount(count);
   	       }
-  	       
   	   }
   	   else {
   	       alert("Your input, " + userInput + ", is not valid number");
@@ -58,34 +58,35 @@ function randomValue() {
 }
 
 function howClose(input, random){
-    // var difference = differenz(input, random);
     var difference = Math.abs(input - random);
-    if (difference > 50) {
-        $("#feedback").text("Ice Cold!");
+    if (previousDifference) {
+        console.log("previous");
+        if (difference < previousDifference){
+            $("#feedback").text("You're warmer!");
+        }
+        else {
+            $("#feedback").text("You're colder!");
+        }
     }
-    else if (difference <= 50 && difference >= 30) {
-        $("#feedback").text("Cold!");
+    else {
+        console.log("no previous");
+        if (difference > 50) {
+            $("#feedback").text("Ice Cold!");
+        }
+        else if (difference <= 50 && difference >= 30) {
+            $("#feedback").text("Cold!");
+        }
+        else if (difference < 30 && difference >= 20) {
+            $("#feedback").text("Warm!");
+        }
+        else if (difference < 20 && difference >= 10) {
+            $("#feedback").text("Hot!");
+        }
+        else if (difference < 10 && difference >= 1) {
+            $("#feedback").text("Burning!");
+        }
     }
-    else if (difference < 30 && difference >= 20) {
-        $("#feedback").text("Warm!");
-    }
-    else if (difference < 20 && difference >= 10) {
-        $("#feedback").text("Hot!");
-    }
-    else if (difference < 10 && difference >= 1) {
-        $("#feedback").text("Burning!");
-    }
-}
-
-function differenz(input, random) {
-    var difference;
-    if (input < random) {
-        difference = random - input;
-    }
-    else if (input > random) {
-        difference = input - random;
-    }
-    return difference;
+    previousDifference = difference;
 }
 
 function setCount(count) {
